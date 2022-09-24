@@ -27,16 +27,19 @@ const Home = () => {
 
   const addedNotes = () => {
     if (!addNOtes) {
+    
     } else if (addNOtes && !togglebtn) {
       setSubmitsNotes(
         submitNotes.map((elem) => {
           if (elem.id === edit) {
             return { ...elem, notes: addNOtes };
+            
           }
           return elem;
         })
+       
       );
-      setTogglebtn(false);
+      setTogglebtn(true);
       setAddNotes("");
       setEdit(null);
     } else {
@@ -45,17 +48,18 @@ const Home = () => {
         notes: addNOtes,
       };
       setSubmitsNotes([...submitNotes, allInputData]);
-      setAddNotes("");
+       setAddNotes("");
     }
+    
   };
 
   //   .............................delete notes......................................
 
   const DeleteNotes = (index) => {
-    alert("delete");
+   
     //console.log(index)
     let showAfterDelete = submitNotes.filter((ele) => {
-      return index != ele.id;
+      return index !== ele.id;
     });
 
     setSubmitsNotes(showAfterDelete);
@@ -66,14 +70,16 @@ const Home = () => {
   const EditNotes = (id) => {
     alert("please update notes");
 
+
     let AllUpdateNotes = submitNotes.find((ele) => {
       return ele.id === id;
     });
 
-    console.log(AllUpdateNotes);
+    // console.log(AllUpdateNotes);
     setTogglebtn(false);
     setAddNotes(AllUpdateNotes.notes);
     setEdit(id);
+   
   };
 
   //  .....................set data in localStorage................................
@@ -84,9 +90,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="home">
+      <div className="home" >
         <input
           className="addinput"
+          
           type="text"
           placeholder="add notes ......"
           value={addNOtes}
@@ -100,11 +107,11 @@ const Home = () => {
         ) : (
           <button className="btn" onClick={addedNotes}>
             {" "}
-            Add Notes{" "}
+            Edits Notes{" "}
           </button>
         )}
       </div>
-      <div className="search">
+      {/* <div className="search">
         <input
           className="searchinput"
           type="text"
@@ -112,7 +119,7 @@ const Home = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-      </div>
+      </div> */}
 
       <div>
         {/* ...................display  notes............................ */}
